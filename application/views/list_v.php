@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div class="text-center">
-			<h1>List Invitation</h1>
+			<h1>List Invitation <?php echo $this->session->userdata("nama"); ?></h1>
 		</div>
 		<hr>
 		<div class="row">
@@ -33,6 +33,10 @@
 					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						Add
 					</button>
+				</div>
+				<div>
+					<!-- <button type="button" class="btn btn-danger">Logout</button> -->
+					<a href="../c_auth/logout">Logout</a>
 				</div>
 				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">

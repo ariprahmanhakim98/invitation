@@ -8,7 +8,10 @@ class C_invitation extends CI_Controller
 	{
 		parent::__construct();
 		base_url();
-		// redirect('refresh');
+		if ($this->session->userdata('status') != "login") {
+			// redirect(base_url("login"));
+			redirect('http://localhost/myApps');
+		}
 		$this->load->library('form_validation');
 		$this->load->model('M_invitation', 'model');
 		$this->load->helper('url');
@@ -40,16 +43,16 @@ class C_invitation extends CI_Controller
 			'name' => $name,
 			'price' => $price,
 			'address' => $address,
-			'information' => 'father',
+			// 'information' => 'father',
+			'information' => $this->session->userdata("nama"),
 			'created_at' => date('Y-m-d H:i:s')
 		);
 
 		$this->model->insert($tbl, $data);
 
-		// var_dump($exe);
+		// var_dump($data);
 		$this->session->set_flashdata('success', 'Data has been inserted successfully!');
 		redirect('http://localhost/myApps');
-
 	}
 
 
