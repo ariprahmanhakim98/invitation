@@ -32,7 +32,8 @@ class M_invitation extends CI_Model
 	function getlist($gettable, $where)
     {
         $dbarif = $this->load->database('default', TRUE);
-        return $dbarif->select('*')->from($gettable)->where($where)->get();
+        // return $dbarif->select('*')->from($gettable)->where($where)->get();
+        return $dbarif->select('*')->from($gettable)->like($where)->get();
     }
 
 }
