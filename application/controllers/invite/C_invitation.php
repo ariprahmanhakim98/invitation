@@ -65,4 +65,17 @@ class C_invitation extends CI_Controller
 		redirect('http://localhost/myApps/invite/c_invitation');
 	}
 
+	function info()
+	{
+		$tbl = 'tbl_invitation';
+		$tbl2 = 'users';
+		// $log = ('' =>$this->session->userdata("nama"));
+
+		$data['user'] = $this->model->geted($tbl2)->num_rows();
+		$data['data'] = $this->model->geted($tbl)->num_rows();
+
+		// var_dump($data['user']);
+		$this->load->view('info_v', $data);
+	}
+
 }

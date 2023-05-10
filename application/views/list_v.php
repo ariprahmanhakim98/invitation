@@ -23,9 +23,16 @@
 					<li class="nav-item">
 						<a class="nav-link active">Welcome <?php echo $this->session->userdata("nama"); ?> !</a>
 					</li>
+					<?php if ($this->session->userdata("nama") == 'admin') : ?>
+						<li class="nav-item">
+							<a href="#" class="nav-link active">list</a>
+						</li>
+						<li class="nav-item">
+							<a href="../invite/c_invitation/info" class="nav-link active">Info</a>
+						</li>
+					<?php endif; ?>
 				</ul>
 				<form class="d-flex">
-					<!-- <button class="btn btn-outline-success" type="submit">Logout</button> -->
 					<a href="../c_auth/logout">
 						<button type="button" class="btn btn-light">Logout</button>
 					</a>
@@ -91,7 +98,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="mt-5">
+		<div class="mt-5" id="mb-table">
 			<table class="table table-success table-striped">
 				<thead>
 					<tr>
@@ -125,6 +132,16 @@
 			</table>
 		</div>
 	</div>
+	<footer class="footer fixed-bottom text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 py-2">
+					<span>&copy; 2023</span><br>
+					<span>by: ariprahmanhakim</span>
+				</div>
+			</div>
+		</div>
+	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 	<script>
 		// $(document).ready(function() {

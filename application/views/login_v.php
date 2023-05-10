@@ -17,11 +17,9 @@
 			<div class="col-lg-4 mt-5">
 				<div class="card">
 				<img src="assets/img/bg.jpg" class="card-img-top" style="max-height: 125px" alt="img mountain">
-					<!-- <div class="card-header text-center">
-						<h2>LOGIN</h2>
-					</div> -->
 					<div class="card-body">
 						<form action="c_auth/aksi_login" method="post">
+						<input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" id="<?= $this->security->get_csrf_token_name() ?>">
 							<div class="mb-3">
 								<label class="form-label">Username</label>
 								<input type="text" name="username" class="form-control">

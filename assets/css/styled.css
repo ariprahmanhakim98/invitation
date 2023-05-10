@@ -11,3 +11,12 @@
 .myapps{
 	font-family: 'Yellowtail', cursive;
 }
+
+footer {
+	background-color: black;
+	color: white;
+}
+
+#mb-table {
+	margin-bottom: 100px;
+}

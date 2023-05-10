@@ -41,4 +41,10 @@ class M_invitation extends CI_Model
         return $dbarif->select('*')->from($gettable)->where($where)->like($where2)->get();
     }
 
+	function geted($gettable)
+    {
+        $dbarif = $this->load->database('default', TRUE);
+        return $dbarif->select('*')->from($gettable)->get();
+    }
+
 }
