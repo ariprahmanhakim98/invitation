@@ -52,7 +52,7 @@ class C_invitation extends CI_Controller
 
 		// var_dump($data);
 		$this->session->set_flashdata('success', 'Data has been inserted successfully!');
-		redirect('http://localhost/myApps');
+		redirect('http://localhost/myApps/invite/c_invitation');
 	}
 
 

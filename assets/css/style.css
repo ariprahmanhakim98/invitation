@@ -1,0 +1,12 @@
+body {
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+}
+
+.card {
+	box-shadow: 0 0 13px rgba(240, 240, 240, 240);
+}
+
+.form-control {
+	border: 1px solid black !important;
+}

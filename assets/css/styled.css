@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500&family=Yellowtail&display=swap');
+
+.form-control {
+	border: 1px solid black !important;
+}
+
+.list {
+	font-family: 'Saira Condensed', sans-serif;
+}
+
+.myapps{
+	font-family: 'Yellowtail', cursive;
+}
