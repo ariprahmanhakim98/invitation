@@ -24,9 +24,11 @@ class C_auth extends CI_Controller
 			'password' => md5($password)
 		);
 		$cek = $this->auth->cek_login("users", $where)->num_rows();
+		$get = $this->auth->cek_login("users", $where)->row();
 		if ($cek > 0) {
 
 			$data_session = array(
+				'id' => $get->id,
 				'nama' => $username,
 				'status' => "login"
 			);
@@ -41,6 +43,27 @@ class C_auth extends CI_Controller
 			redirect(base_url());
 
 		}
+	}
+
+	function updatepicture()
+	{
+		$imgname 						= $this->input->post('forname');
+		$id								= $this->input->post('forid');
+		$config['upload_path']          = "./assets/potoprofile";
+		$config['allowed_types']        = 'gif|jpg|png|pdf|jpeg';
+		$config['overwrite']            = true;
+		$config['file_name'] 			= $imgname.+rand().".png";
+		$this->load->library('upload',$config);
+
+		if ($this->upload->do_upload('file_img')) {
+			$uploaded_data 				= $this->upload->data();
+			$data				    	= array('photo' => $uploaded_data['file_name']);
+			$wh                     	= array('id'	=> $id);
+			$this->auth->update($wh, 'users', $data);
+			$this->session->set_flashdata('success', 'Update successfully!');
+			redirect(base_url('profile/c_profile'));
+		}
+
 	}
 
 	function logout()
