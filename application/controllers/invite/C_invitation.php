@@ -7,10 +7,8 @@ class C_invitation extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		base_url();
 		if ($this->session->userdata('status') != "login") {
-			// redirect(base_url("login"));
-			redirect('http://localhost/myApps');
+			redirect(base_url());
 		}
 		$this->load->library('form_validation');
 		$this->load->model('M_invitation', 'model');
@@ -30,14 +28,13 @@ class C_invitation extends CI_Controller
 			if($log != 'admin'){
 				$data['list'] = $this->model->getlist($tbl, $where, $where2);
 			} else {
-				// echo 'admin';
 				$data['list'] = $this->model->getlistadm($tbl, $whereadm);
 			}
 		}
 
-		// var_dump($log);
-
+		$this->load->view('pages/header');
 		$this->load->view('list_v', $data);
+		$this->load->view('pages/footer');
 	}
 
 	function store()
@@ -53,29 +50,28 @@ class C_invitation extends CI_Controller
 			'name' => $name,
 			'price' => $price,
 			'address' => $address,
-			// 'information' => 'father',
 			'information' => $this->session->userdata("nama"),
 			'created_at' => date('Y-m-d H:i:s')
 		);
 
 		$this->model->insert($tbl, $data);
 
-		// var_dump($data);
 		$this->session->set_flashdata('success', 'Data has been inserted successfully!');
-		redirect('http://localhost/myApps/invite/c_invitation');
+		redirect(base_url('invite/c_invitation'));
+
 	}
 
 	function info()
 	{
 		$tbl = 'tbl_invitation';
 		$tbl2 = 'users';
-		// $log = ('' =>$this->session->userdata("nama"));
 
 		$data['user'] = $this->model->geted($tbl2)->num_rows();
 		$data['data'] = $this->model->geted($tbl)->num_rows();
 
-		// var_dump($data['user']);
+		$this->load->view('pages/header');
 		$this->load->view('info_v', $data);
+		$this->load->view('pages/footer');
 	}
 
 }

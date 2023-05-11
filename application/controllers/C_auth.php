@@ -33,20 +33,20 @@ class C_auth extends CI_Controller
 
 			$this->session->set_userdata($data_session);
 
-			// redirect(base_url("admin"));
 			$this->session->set_flashdata('success', 'Login successfully!');
-			redirect('http://localhost/myApps/invite/c_invitation');
+			redirect(base_url('invite/c_invitation'));
+
 		} else {
-			// echo "Username dan password salah !";
 			$this->session->set_flashdata('failed', 'Username dan password salah !');
-			redirect('http://localhost/myApps');
+			redirect(base_url());
+
 		}
 	}
 
 	function logout()
 	{
 		$this->session->sess_destroy();
-		// redirect(base_url('login'));
-		redirect('http://localhost/myApps');
+		redirect(base_url());
+
 	}
 }
