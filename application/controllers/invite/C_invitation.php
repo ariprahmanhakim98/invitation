@@ -61,6 +61,48 @@ class C_invitation extends CI_Controller
 
 	}
 
+	function edit()
+	{
+		$id  	= array('id' => $this->uri->segment('4'));
+		$data['edit'] = $this->model->getlistforupdate('tbl_invitation', $id)->row();
+
+		$this->load->view('pages/header');
+		$this->load->view('list_edit_v', $data);
+		$this->load->view('pages/footer');
+	}
+
+	function update()
+	{
+		$tbl = 'tbl_invitation';
+		$url = $this->input->post('id');
+		$where = array('id' => $this->input->post('id'));
+		$name = $this->input->post('name');
+		$price = $this->input->post('price');
+		$address = $this->input->post('address');
+		$data = array(
+			'name' => $name,
+			'price' => $price,
+			'address' => $address
+		);
+
+		$exe = $this->model->updated($where, $tbl, $data);
+		if($exe){
+			$this->session->set_flashdata('success', 'Update successfully!');
+			redirect(base_url('invite/c_invitation/edit/').$url);
+		}
+	}
+
+	function delete()
+	{
+		$tbl = 'tbl_invitation';
+		$id = array('id' => $this->input->post('id'));
+		$exe = $this->model->delete($tbl, $id);
+		if($exe){
+			$this->session->set_flashdata('success', 'Delete successfully!');
+			redirect(base_url('invite/c_invitation'));
+		}
+	}
+
 	function info()
 	{
 		$tbl = 'tbl_invitation';

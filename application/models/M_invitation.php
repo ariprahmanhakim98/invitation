@@ -23,6 +23,12 @@ class M_invitation extends CI_Model
         return  $dbarif->where($where)->update($this->table, $data);
     }
 
+	function updated($where, $table, $data)
+    {
+        $dbarif =$this->load->database('default', TRUE);
+        return  $dbarif->where($where)->update($table, $data);
+    }
+
     public function list($tbl)
     {
         $dbarif = $this->load->database('default', TRUE);
@@ -39,6 +45,12 @@ class M_invitation extends CI_Model
     {
         $dbarif = $this->load->database('default', TRUE);
         return $dbarif->select('*')->from($gettable)->where($where)->like($where2)->get();
+    }
+
+	function getlistforupdate($gettable, $where)
+    {
+        $dbarif = $this->load->database('default', TRUE);
+        return $dbarif->select('*')->from($gettable)->where($where)->get();
     }
 
 	function geted($gettable)

@@ -102,6 +102,14 @@ if ($user->photo == "") {
 		$("#edit").show();
 		$("#username").show();
 	});
+	<?php if ($this->session->flashdata('failed')) : ?>
+		iziToast.show({
+			title: 'Failed',
+			message: "<?= $this->session->flashdata('failed') ?>",
+			position: 'topRight',
+			color: 'red'
+		});
+	<?php endif ?>
 
 	<?php if ($this->session->flashdata('success')) : ?>
 		iziToast.show({

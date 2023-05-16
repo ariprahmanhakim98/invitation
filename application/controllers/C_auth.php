@@ -51,6 +51,7 @@ class C_auth extends CI_Controller
 		$id								= $this->input->post('forid');
 		$config['upload_path']          = "./assets/potoprofile";
 		$config['allowed_types']        = 'gif|jpg|png|pdf|jpeg';
+		$config['max_size'] 			= 1024; // 1MB
 		$config['overwrite']            = true;
 		$config['file_name'] 			= $imgname.+rand().".png";
 		$this->load->library('upload',$config);
@@ -61,6 +62,9 @@ class C_auth extends CI_Controller
 			$wh                     	= array('id'	=> $id);
 			$this->auth->update($wh, 'users', $data);
 			$this->session->set_flashdata('success', 'Update successfully!');
+			redirect(base_url('profile/c_profile'));
+		} else {
+			$this->session->set_flashdata('failed', 'Username dan password salah !');
 			redirect(base_url('profile/c_profile'));
 		}
 

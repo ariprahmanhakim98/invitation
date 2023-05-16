@@ -56,7 +56,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="mt-5" id="mb-table">
+	<div class="mt-5 table-responsive" id="mb-table">
 		<table class="table table-success table-striped">
 			<thead>
 				<tr>
@@ -65,6 +65,9 @@
 					<th scope="col">Price</th>
 					<th scope="col">Info</th>
 					<th scope="col">Address</th>
+					<?php if($this->session->userdata("nama") == 'admin') : ?>
+					<th scope="col">Action</th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -80,6 +83,18 @@
 								<td><?= $key->price ?></td>
 								<td><?= $key->information ?></td>
 								<td><?= $key->address ?></td>
+								<?php if($this->session->userdata("nama") == 'admin') : ?>
+								<td style="">
+									<div class="d-flex">
+										<a href="<?= base_url() ?>invite/c_invitation/edit/<?= $key->id ?>" type="button" class="btn btn-info btn-sm mx-2">Edit</a>
+										<form method="POST" action="<?= base_url('invite/c_invitation/delete') ?>">
+											<input type="hidden" name="id" value="<?= $key->id ?>">
+											<input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" id="<?= $this->security->get_csrf_token_name() ?>" class="form-control" value="<?= $this->security->get_csrf_hash() ?>">
+											<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+										</form>
+									</div>
+								</td>
+								<?php endif; ?>
 							</tr>
 				<?php endforeach;
 					endif;
