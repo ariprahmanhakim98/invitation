@@ -45,6 +45,7 @@
 		</div>
 	</div>
 	<div class="mt-5 table-responsive" id="mb-table">
+		<?= var_dump($sum) ?>
 		<table class="table table-success table-striped">
 			<thead>
 				<tr>
@@ -53,6 +54,7 @@
 					<th scope="col">Password</th>
 					<th scope="col">Full Name</th>
 					<th scope="col">Photo</th>
+					<th scope="col">Total Data</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -69,6 +71,7 @@
 								<td><?= $key->password ?></td>
 								<td><?= $key->full_name ?></td>
 								<td><?= $key->photo ?></td>
+								<td>111</td>
 								<td style="">
 									<div class="d-flex">
 										<form method="POST" action="<?= base_url('admin/c_user/delete') ?>">

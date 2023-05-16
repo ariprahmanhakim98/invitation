@@ -12,14 +12,24 @@ class C_user extends CI_Controller
 		}
 		$this->load->library('form_validation');
 		$this->load->model('M_auth', 'model');
+		$this->load->model('M_invitation', 'invite');
 		$this->load->helper('url');
 	}
 
 	public function index()
 	{
 		$tbl = 'users';
+		$tbl2 = 'tbl_invitation';
 		$data['list'] = $this->model->getlist($tbl);
+		$query = $data['list']->result();
+		$data['sum'] = array();
+		foreach ($query as $key) {
+			$name = array('information' => $key->username);
+			$dat = $this->invite->getlistadm($tbl2, $name)->num_rows();
+			array_push($data['sum'], $dat);
+		}
 
+		// var_dump($tampung);
 		$this->load->view('pages/header');
 		$this->load->view('admin/user_v', $data);
 		$this->load->view('pages/footer');
@@ -60,7 +70,7 @@ class C_user extends CI_Controller
 
 	function update()
 	{
-		
+
 	}
 
 	function delete()
